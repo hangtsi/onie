@@ -46,3 +46,19 @@
  #else
    gdb_module = Py_InitModule ("_gdb", python_GdbMethods);
  #endif
+
+
+--- gdb-7.12.1/gdb/python/python-config.py.org
++++ gdb-7.12.1/gdb/python/python-config.py
+@@ -4,7 +4,10 @@
+ import sys
+ import os
+ import getopt
+-from distutils import sysconfig
++try:
++    from distutils import sysconfig
++except ImportError:
++    import sysconfig
+ 
+ valid_opts = ['prefix', 'exec-prefix', 'includes', 'libs', 'cflags',
+               'ldflags', 'help']
